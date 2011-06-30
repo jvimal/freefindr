@@ -1,0 +1,61 @@
+<h1>About this app</h1>
+<style>
+body { width: 500px; text-align: justify; }
+</style>
+
+<p>Hi, I am Vimal and this is my submission to the IndexTank+80legs
+competition titled <%= link_to "Freefindr", "/maps" %>.  The idea is to
+enable easy search interface into free goods distributed by people
+all around the world via the <a href="http://www.freecycle.org/">
+Freecycle network</a>.</p>
+
+<p>Please note that this submission's UI component was from a previous
+	Indextank contest submission of mine.</p>
+
+<h2>80 legs</h2>
+<p>
+	This is how I used 80legs to crawl content:
+	<ol>
+		<li>Using a <a href="https://gist.github.com/954bfdecaafff15c4085">simple web-scraper</a>, enumerate seed URL list
+			from
+			the <a href="http://www.freecycle.org/group/US/California">California</a>,
+			<a href="http://www.freecycle.org/group/US/New%20York">New York</a> and
+			<a href="http://www.freecycle.org/group/US/Illinois">Illinois</a> state Freecycle
+			groups.</li>
+		
+		<li>Configure the crawl to obtain HTML from all the pages crawled under the
+			above chosen groups.</li>
+		
+		<li>Using a <a href="https://github.com/turian/py80legsformat">python 80legs parser</a>
+			and <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>,
+			I obtained the structured information
+			from all posts into a json file.</li>
+		
+		<li>The json file was used to populate my indextank index.</li>
+	</ol>
+</p>
+
+<h2>How to use it</h2>
+<p>Just enter keywords to search on the textbox, and a place nearby
+	for location search.  The red markers are items that are wanted,
+	but the green markers correspond to items that are for free :)
+</p>
+
+<p>
+	Clicking on the marker shows more details about the item.
+</p>	
+
+<h2>Screenshots</h2>
+<p>
+	While searching for books in New York:<br/>
+	<a href="/images/screenshot.png"><img src="/images/screenshot.png" style="width: 300px;"></a>
+</p>
+
+<p>
+	Cars near Chicago:<br/>
+	<a href="/images/screenshot_2.png"><img src="/images/screenshot_2.png" style="width: 300px;"></a>
+</p>
+
+<h3>About me</h3> I am a <%= link_to "graduate student",
+"http://www.stanford.edu/~jvimal" %> and my research interests are
+Networks and Security, and in general: Systems.

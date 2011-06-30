@@ -1,0 +1,77 @@
+<div>
+<%= form_tag '/search', :id => "search", :method => :get, :onsubmit => "mpmetrics.track('submit-txt', {'url': window.location}); return true;" do %>
+<a href="/search"><img src="/images/freefindr.png" style="float: left;padding-top: 5px;"/></a>
+
+<%= text_field_tag "query", params[:query],
+    :autocomplete => "off",
+    :placeholder => "Computers / Cars / Desks", :size => 30 %>
+
+<%= text_field_tag "near", params[:near], :autocomplete => "off",
+    :placeholder => "Near #{@default_loc}", :size => 30 %>
+
+<%= submit_tag "Find!", :class => "clean-gray" %>
+<% end %>
+</div>
+
+<p>Searching about 20K free stuff <b>only</b> in California, New York and Illinois!</p>
+
+<% if @results['matches'] == 0 then %>
+<p>We couldn't find any entries that match <%= params[:query] %>
+near <%= @default_loc %>.
+
+<% else %>
+<% if @results['matches'] != -1 %>
+<p>Found <%= @results['matches'] %> results.
+
+<%= link_to "See results on an interactive map.", "/maps?" + params[:query].to_query('query') + "&" + params[:near].to_query('near') %></p>
+<% end %>
+<% end %>
+
+<div style="clear: both; padding-top: 1em;">
+<ul id="presults">
+<% @results['results'].each do |r| %>	
+<li class="presult">
+  <div class="drop-shadow curved pitem">
+    <div class="pname"><%= r['name'] %></div>
+
+    <div class="plinks">
+      <span class="pmaps"><%= link_to "Maps", "/maps?" + r['name'].to_query('query') + "&" + params[:near].to_query('near')  %></span>
+      <% if r['url'].strip.length then %>
+      <span class="pwebsite"><%= link_to "Website", r['url'] %></span>
+      <% end %>
+    </div>
+
+	<table class='bubble'>
+		<tr>
+			<td colspan=2>
+				<div class='i-title'><%= r['subject'] %></div>
+			</td>
+		</tr>
+		<tr>
+			<th>Type</th>
+			<td class='<%= r['category_type'] %>'></td>
+		</tr>
+		<tr>
+			<th style='width: 50px;'>Location</th>
+			<td><%= r['location'] %></td>
+		</tr>
+		
+		<tr>
+			<th>Date</th>
+			<td><%= r['timestr'] %></td>
+		</tr>
+		
+		<tr>
+			<th>Description</th>
+			<td><%= r['text'] %></td>
+		</tr>
+	</table>
+  </div>
+</li>
+<% end %>
+</ul>
+</div>
+
+<div style="clear: both; padding-top: 50px; text-align: center;">
+  For IndexTank+80legs competition submission.
+</div>

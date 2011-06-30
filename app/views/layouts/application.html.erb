@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find free stuff locally!</title>
+  <%= favicon_link_tag '/images/ff.png' %>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :all %>
+  <%= csrf_meta_tag %>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22744485-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+
+<%= yield %>
+
+<!-- FOOTPRINT HTML START -->
+<script type="text/javascript" src="http://script.footprintlive.com/?site=freefindr.heroku.com"></script><noscript><a href="http://www.footprintlive.com" target="_blank"><img src="http://img.footprintlive.com/?cmd=nojs&amp;site=freefindr.heroku.com" alt="free tracking" border="0" /></a></noscript>
+<!-- FOOTPRINT HTML END -->
+</body>
+</html>
